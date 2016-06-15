@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Map My Elevation</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+	<div>
+		<header>
+			<h1>Map My Elevation</h1>
+		</header>
+	</div>
+	<section class="routeInput">
+		<div id="formDiv">	
+			<form>
+				
+				<input type="text" placeholder="Starting Location">
+				<br><br>
+				<input type="text" placeholder="Destination">
+				<br><br>
+				<input type="submit">
+				<br><br>
+				<p>Enter the starting location and destination of your route.  The map and elevation change will be displayed below.</p>
+			</form>
+		</div>
+		<div id="sign">
+			<img id="signPic" src="http://static1.squarespace.com/static/564d14dfe4b0290681184a82/570d5f6a1bbee0c64b3930e4/570d668960b5e9c23c5a3a99/1460561661297/Death+Valley+National+Park+new+-+001.jpg">
+		</div>
+	</section>
+	<br><br>
+	<section class="routeOutput">
+		<div id="elevationPoints">
+			<p>You're initial elevation is" ".</p>
+			<p>You're distination elevation is " ".</p>
+		</div>
+		<br><br>
+		<div id="routeMap">
+			<h2>Map of Route</h2>
+			<div id="map">
+				<img id="mapPic" src="http://admin.gotransitnc.org/sites/default/files/Proposed_301_300_map.png">
+			</div>
+		</div>
+		<br><br>
+		<div id="elevationChart">
+			<h2>Elevation Chart of Route</h2>
+			<div id="chart">
+				<img id="chartPic" src="http://freeradical.me/wp-content/uploads/2013/04/woodside-ramble-elevation-chart.png">
+			</div>
+		</div>
+	</section>
+</body>
+</html>

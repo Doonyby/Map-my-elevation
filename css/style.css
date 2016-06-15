@@ -1,0 +1,43 @@
+section, div {
+	border: 1px solid black;
+	text-align: center;
+	margin: 0 auto;
+}
+
+section {
+	width: 80%;
+}
+
+header {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+form > p {
+	width: 400px;
+}
+
+input {
+	width: 375px;
+	margin: 5px 0;
+}
+
+#signPic {
+	width: 300px;
+}
+
+#sign, #formDiv {
+	display: inline-block;
+}
+
+#formDiv {
+	margin-right: 50px;
+	width: 400px;
+	height: 450px;
+}
+
+#elevationPoints > p {
+	display: inline-block;
+	padding: 20px 40px;
+}
+
