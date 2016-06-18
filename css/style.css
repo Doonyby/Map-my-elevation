@@ -22,6 +22,10 @@ input {
 	margin: 5px 0;
 }
 
+b {
+	color: red;
+}
+
 #signPic {
 	width: 300px;
 }

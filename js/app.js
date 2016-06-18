@@ -41,10 +41,30 @@ $(document).ready(function () {
 		url = 'http://open.mapquestapi.com/elevation/v1/profile';
 
 		$.getJSON(url, params, function(data) {
-			console.log(data);
 			$('#distance').text('Total Distance: ' + data.elevationProfile[1].distance + ' miles');
 			$('#startElev').text('Starting Elevation: ' + data.elevationProfile[0].height + ' ft. above sea level.');
 			$('#endElev').text('Ending Elevation: ' + data.elevationProfile[1].height + ' ft. above sea level.');
+		});
+	}
+
+	function getRouteMap() {
+		var coordinates = startLatLng + "," + finishLatLng;
+		var params = {
+			key: 'DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf',
+			from: startLatLng,
+			to: finishLatLng,
+			inFormat: 'kvp',
+			shapeFormat: 'raw',
+			unit: "m",
+			narrativeType: 'none',
+			mapwidth: 425,
+			mapheight: 350,
+		};
+		url = 'http://open.mapquestapi.com/directions/v2/route';
+
+		$.getJSON(url, params, function(data) {
+			console.log(data);
+
 		});
 	}
 
@@ -91,6 +111,7 @@ $(document).ready(function () {
 				//console.log(startLatLng + "," + finishLatLng);
 				getElevationChartInfo();
 				getElevationTableInfo();
+				getRouteMap();
 		    }
 		    else {
 		        // Request for web data didn't work, handle it
@@ -100,23 +121,6 @@ $(document).ready(function () {
 
 		
 	}
-
-	// var getFinishGeocode = function(finish) {
-	// 	var params = {
-	// 		key: 'DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf',
-	// 		inFormat: 'kvp',
-	// 		outFormat: 'json',
-	// 		maxResults: 1,
-	// 		location: finish
-	// 	};
-	// 	url = 'http://www.mapquestapi.com/geocoding/v1/address';
-	// 	$.getJSON(url, params, function(data) {
-	// 		var lattitude = data.results[0].locations[0].latLng.lat;
-	// 		var longitude = data.results[0].locations[0].latLng.lng;
-	// 		finishLatLng += lattitude + "," + longitude;
-	// 		getElevationInfo();
-	// 	});
-	// }
 
 });
 
