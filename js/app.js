@@ -54,7 +54,7 @@ $(document).ready(function () {
 			$('#distance').text('Total Distance: ' + data.route.distance + ' miles');
 			var session = data.route.sessionId;
 			console.log(data);
-			//$('#map').html('<img src="http://open.mapquestapi.com/directions/v2/routeshape?key="DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf"&callback=renderShapeResults&json={sessionId:' + session + ', mapState:{width: 320, height:240, scale:866685, center:{lat:40.5312875, lng:-111.792457}}}">')
+			$('#map').html('<img src="http://open.mapquestapi.com/directions/v2/routeshape?key=DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf&callback=renderShapeResults&json={sessionId:' + session + ', mapState:{width: 320, height:240, scale:866685, center:{lat:40.5312875, lng:-111.792457}}}">')
 			//$('#chart').html('<img style="-webkit-user-select: none; cursor: zoom-in;" src="http://open.mapquestapi.com/elevation/v1/chart?key=DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf&amp;inFormat=kvp&amp;shapeFormat=raw&amp;unit=f&amp;width=425&amp;height=350&amp;sessionId=' + session + '" width="398" height="328">');
 
 		});
