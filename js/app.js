@@ -1,6 +1,8 @@
 $(document).ready(function () {
 	$('input[name="button"]').click(function(e) {
 		e.preventDefault();
+		startLatLng = "";
+		finishLatLng = "";
 		var start = $('input[name="start"]').val()
 		var finish = $('input[name="finish"]').val()
 			
