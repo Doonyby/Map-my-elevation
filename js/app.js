@@ -35,6 +35,7 @@ $(document).ready(function () {
 			})
 		).then(function() {
 		    if (session) {
+		    	console.log('session', session);
 		    	$('#distance').text("Distance: " + session.route.distance + " miles.");
 		        // Worked, put graphicData in #view-graphic
 				getElevationChartInfo(session.route.sessionId);
