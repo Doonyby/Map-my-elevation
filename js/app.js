@@ -35,7 +35,6 @@ $(document).ready(function () {
 			})
 		).then(function() {
 		    if (session) {
-		    	console.log(session);
 		    	$('#distance').text("Distance: " + session.route.distance + " miles.");
 		        // Worked, put graphicData in #view-graphic
 				getElevationChartInfo(session.route.sessionId);
@@ -64,7 +63,6 @@ $(document).ready(function () {
 		url = 'http://open.mapquestapi.com/elevation/v1/profile';
 
 		$.getJSON(url, params, function(data) {
-			console.log('table', data);
 			$('#startElev').text('Starting Elevation: ' + data.elevationProfile[0].height + ' ft. above sea level.');
 			$('#endElev').text('Ending Elevation: ' + data.elevationProfile.pop().height + ' ft. above sea level.');
 			$('#loadingMessage').text('Scroll down to see route elevation chart.');
