@@ -1,77 +1,57 @@
 $(document).ready(function () {
 	$('input[name="button"]').click(function(e) {
-		e.preventDefault();
-		startLatLng = "";
-		finishLatLng = "";
+		e.preventDefault();		
+		$('#distance').text('');
+		$('#startElev').text('');
+		$('#endElev').text('');
+		$('#chart').html('');
 		var start = $('input[name="start"]').val()
 		var finish = $('input[name="finish"]').val()
-			
-		getGeocodeInfo(start, finish);
-		
+		if (start == '') {
+			alert('You must enter a starting value');
+		}
+		else if (finish == '') {
+			alert('You must enter a finish value');
+		} else {
+			getGeocodeInfo(start, finish);
+		}
 	});
 
-	var startLatLng = "";
-	var finishLatLng = "";
+	
 
 	var getGeocodeInfo = function(start, finish) {
-		var startParams = {
+		var params = {
 			key: 'DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf',
-			inFormat: 'kvp',
-			outFormat: 'json',
-			maxResults: 1,
-			location: start
-		};
-		var finishParams = {
-			key: 'DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf',
-			inFormat: 'kvp',
-			outFormat: 'json',
-			maxResults: 1,
-			location: finish
-		};
-		url = 'http://www.mapquestapi.com/geocoding/v1/address';
-		var startData, finishData;
+			unit: 'm',
+			from: start,
+			to: finish
+		}
+		var session;
+		var url = 'http://www.mapquestapi.com/directions/v2/route';
 		$.when(
-			$.getJSON(url, startParams, function(data) {
-				startData = data;
-			}),
-			$.getJSON(url, finishParams, function(data) {
-				finishData = data;
+			$.getJSON(url, params, function(data) {
+				$('#loadingMessage').text('Loading... (this may take a second)');
+				session = data;
 			})
 		).then(function() {
-		    if (startData) {
+		    if (session) {
+		    	console.log(session);
+		    	$('#distance').text("Distance: " + session.route.distance + " miles.");
 		        // Worked, put graphicData in #view-graphic
-		        var lattitude = startData.results[0].locations[0].latLng.lat;
-				var longitude = startData.results[0].locations[0].latLng.lng;
-				startLatLng += lattitude + "," + longitude;
+				getElevationChartInfo(session.route.sessionId);
+				getElevationTableInfo(session.route.sessionId);
 		    }
 		    else {
-		        // Request for graphic data didn't work, handle it
-		        alert("No start data!");
-		    }
-		    if (finishData) {
-		        // Worked, put webData in #view-web
-		        var lattitude = finishData.results[0].locations[0].latLng.lat;
-				var longitude = finishData.results[0].locations[0].latLng.lng;
-				finishLatLng += lattitude + "," + longitude;
-				//console.log(startLatLng + "," + finishLatLng);
-				getElevationChartInfo();
-				getElevationTableInfo();
-				getRouteMap();
-		    }
-		    else {
-		        // Request for web data didn't work, handle it
-		        alert("No finish data!");
+		        $('#loadingMessage').text('Something went wrong with your input. Check to see if inputs are correct, then try again. Maybe try being more specific.');
 		    }
 		});
 	}
 	
-	function getElevationChartInfo(session) {
-		var coordinates = startLatLng + "," + finishLatLng;
-		$('#chart').html('<h2>Elevation Chart of Route</h2><br><br><img style="-webkit-user-select: none; cursor: zoom-in;" src="http://open.mapquestapi.com/elevation/v1/chart?key=DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf&amp;inFormat=kvp&amp;shapeFormat=raw&amp;unit=f&amp;width=425&amp;height=350&amp;latLngCollection=' + coordinates + '" width="398" height="328">');
+	function getElevationChartInfo(sessionId) {
+		$('#chart').html('<h2>Elevation Chart of Route</h2><img style="-webkit-user-select: none; cursor: zoom-in;" src="http://open.mapquestapi.com/elevation/v1/chart?key=DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf&amp;inFormat=kvp&amp;shapeFormat=raw&amp;unit=f&amp;width=425&amp;height=350&amp;sessionId=' + sessionId + '" width="600" height="400">');
 	}
 
-	function getElevationTableInfo() {
-		var coordinates = startLatLng + "," + finishLatLng;
+	function getElevationTableInfo(sessionId) {
 		var params = {
 			key: 'DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf',
 			inFormat: 'kvp',
@@ -79,37 +59,17 @@ $(document).ready(function () {
 			unit: "f",
 			width: 425,
 			height: 350,
-			latLngCollection: coordinates
+			sessionId: sessionId
 		};
 		url = 'http://open.mapquestapi.com/elevation/v1/profile';
 
 		$.getJSON(url, params, function(data) {
+			console.log('table', data);
 			$('#startElev').text('Starting Elevation: ' + data.elevationProfile[0].height + ' ft. above sea level.');
-			$('#endElev').text('Ending Elevation: ' + data.elevationProfile[1].height + ' ft. above sea level.');
+			$('#endElev').text('Ending Elevation: ' + data.elevationProfile.pop().height + ' ft. above sea level.');
+			$('#loadingMessage').text('Scroll down to see route elevation chart.');
 		});
 	}
 
-	function getRouteMap() {
-		var coordinates = startLatLng + "," + finishLatLng;
-		var params = {
-			key: 'DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf',
-			from: startLatLng,
-			to: finishLatLng,
-			inFormat: 'kvp',
-			shapeFormat: 'raw',
-			unit: "m",
-			routeType: "fastest",
-			narrativeType: 'none',
-			mapwidth: 425,
-			mapheight: 350,
-		};
-		url = 'http://open.mapquestapi.com/directions/v2/route';
-
-		$.getJSON(url, params, function(data) {
-			$('#distance').text('Total Distance: ' + data.route.distance + ' miles');
-			var session = data.route.sessionId;
-			console.log(data);
-		});
-	}
 });
 

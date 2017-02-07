@@ -1,11 +1,11 @@
+body {
+	background-color: #E8D9BE;
+}
+
 section, div {
 	/*border: 1px solid black;*/
 	text-align: center;
 	margin: 0 auto;
-}
-
-section {
-	width: 80%;
 }
 
 header {
@@ -22,11 +22,13 @@ input {
 	margin: 5px 0;
 }
 
-b {
+b,
+#loadingMessage {
 	color: red;
 }
 
 #signPic {
+	margin-top: -12px;
 	width: 300px;
 }
 
@@ -35,13 +37,15 @@ b {
 }
 
 #formDiv {
+	float: left;
 	margin-right: 50px;
 	width: 400px;
 	height: 450px;
 }
 
-#elevationPoints > p {
-	display: inline-block;
-	padding: 20px 40px;
+#distance,
+#startElev,
+#endElev {
+	text-align: left;
 }
 
