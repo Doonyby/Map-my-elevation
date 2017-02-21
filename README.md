@@ -23,11 +23,11 @@ Technology
 ----------
 
 ### Front End
- - HTML5
- - CSS3
- -[Bootstrap](https://getbootstrap.com/)
- -[JQuery](https://jquery.com/)
- -[MapQuest API](https://developer.mapquest.com/documentation/)
+- HTML5
+- CSS3
+- [Bootstrap](https://getbootstrap.com/)
+- [JQuery](https://jquery.com/)
+- [MapQuest API](https://developer.mapquest.com/documentation/)
 
 
 
