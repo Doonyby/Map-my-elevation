@@ -13,11 +13,25 @@ $(document).ready(function () {
 		else if (finish == '') {
 			alert('You must enter a finish value');
 		} else {
+			$('#modal').css('display', 'block');
+			startAnimation();
 			getGeocodeInfo(start, finish);
 		}
 	});
 
-	
+    function startAnimation() {
+      $('#loader').animate({letterSpacing: "+10px"}, 1000);
+      $('#loader').animate({letterSpacing: "0px"}, 1000, startAnimation);
+      setTimeout(stopAnimation, 5000);
+    } 
+
+    function stopAnimation() {
+    	$('#loader').stop(true);
+    	$('#modal').css('display', 'none');
+    	$('#loadingMessage').text("Don't see any info?  Try submitting again, or try using different " +
+    		"locations close to the originals, so you can still get an accurate route.");
+    	$("#chart").velocity("scroll", 800);
+    }
 
 	var getGeocodeInfo = function(start, finish) {
 		var params = {
@@ -30,12 +44,10 @@ $(document).ready(function () {
 		var url = 'http://www.mapquestapi.com/directions/v2/route';
 		$.when(
 			$.getJSON(url, params, function(data) {
-				$('#loadingMessage').text('Loading... (this may take a second)');
 				session = data;
 			})
 		).then(function() {
 		    if (session) {
-		    	console.log('session', session);
 		    	$('#distance').text("Distance: " + session.route.distance + " miles.");
 		        // Worked, put graphicData in #view-graphic
 				getElevationChartInfo(session.route.sessionId);
@@ -48,7 +60,7 @@ $(document).ready(function () {
 	}
 	
 	function getElevationChartInfo(sessionId) {
-		$('#chart').html('<h2>Elevation Chart of Route</h2><img style="-webkit-user-select: none; cursor: zoom-in;" src="http://open.mapquestapi.com/elevation/v1/chart?key=DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf&amp;inFormat=kvp&amp;shapeFormat=raw&amp;unit=f&amp;width=425&amp;height=350&amp;sessionId=' + sessionId + '" width="600" height="400">');
+		$('#chart').html('<h2 class="chartTitle">Elevation Chart of Route</h2><img style="-webkit-user-select: none; cursor: zoom-in;" src="http://open.mapquestapi.com/elevation/v1/chart?key=DkTAlgpIf3NGiuI1P7ZmHIC280KSgwVf&amp;inFormat=kvp&amp;shapeFormat=raw&amp;unit=f&amp;width=425&amp;height=350&amp;sessionId=' + sessionId + '" width="600" height="400">');
 	}
 
 	function getElevationTableInfo(sessionId) {
@@ -66,7 +78,8 @@ $(document).ready(function () {
 		$.getJSON(url, params, function(data) {
 			$('#startElev').text('Starting Elevation: ' + data.elevationProfile[0].height + ' ft. above sea level.');
 			$('#endElev').text('Ending Elevation: ' + data.elevationProfile.pop().height + ' ft. above sea level.');
-			$('#loadingMessage').text('Scroll down to see route elevation chart.');
+			$('#loader').stop(true);
+			$('#modal').css('display', 'none');
 		});
 	}
 

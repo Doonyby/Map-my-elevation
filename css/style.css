@@ -1,51 +1,81 @@
-body {
-	background-color: #E8D9BE;
+html {
+	box-sizing: border-box;
+	-web-font-smoothing: antialiased;
 }
 
-section, div {
-	/*border: 1px solid black;*/
-	text-align: center;
-	margin: 0 auto;
+*, *:before, *:after {
+	box-sizing: inherit;
 }
 
 header {
-	margin-top: 40px;
-	margin-bottom: 40px;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
-form > p {
-	width: 400px;
+form {
+	padding-bottom: 25px;
 }
 
-input {
-	width: 375px;
-	margin: 5px 0;
+.chart {
+	padding-top: 50px;
+	padding-bottom: 100px;
+	text-align: center;
 }
 
-b,
-#loadingMessage {
-	color: red;
+.chartTitle {
+	padding-bottom: 40px;
 }
 
-#signPic {
-	margin-top: -12px;
-	width: 300px;
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	overflow: auto;
+	background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 
-#sign, #formDiv {
-	display: inline-block;
+.modal-content {
+	color: #fff;
+    background-color: #fff;
+    text-align: center;
+    margin: 3% auto; /* 15% from the top and centered */
+    padding: 5px;
+    border: 1px solid #888;
+    width: 400px;
+    height: 600px; /* Could be more or less, depending on screen size */
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
-#formDiv {
-	float: left;
-	margin-right: 50px;
-	width: 400px;
-	height: 450px;
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0} 
+    to {top: 0; opacity: 1}
 }
 
-#distance,
-#startElev,
-#endElev {
-	text-align: left;
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
 }
 
+.loadPic {
+	height: 100%;
+	width: 100%;
+}
+
+.loader {
+	z-index: 2;
+	margin-top: -70px;
+}
+
+footer {
+	background-color: #222;
+	text-align: center;
+	color: #fff;
+	height: 50px;
+}

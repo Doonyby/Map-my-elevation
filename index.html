@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Map My Elevation</title>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="./js/velocity.min.js"></script>
     <script src="js/app.js"></script>
 </head>
 <body>
@@ -18,7 +19,7 @@
 	</div>
 	<section class="routeInput container">
 		<div id="formDiv row">	
-			<div class="col-md-3 col-md-offset-2">
+			<div class="col-md-6 col-md-offset-3">
 				<form>
 					<input name="start" type="text" placeholder="Starting Location">
 					<br><br>
@@ -26,20 +27,29 @@
 					<br><br>
 					<input name="button" type="submit">
 					<br><br>
-					<p>Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas! If results are not displayed, try hitting the submit button again (may take a couple tries), or try another address nearby so elevation calculation can remain accurate.  The elevation chart will be displayed below.  <b>Please limit route to 250 miles!!!!</b></p>
+					<p>Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas!  <b>Please limit route to 250 miles!!!!</b></p>
 					<p id="loadingMessage"></p>
 				</form>
 				<p id="distance"></p>
 				<p id="startElev"></p>
 				<p id="endElev"></p>
 			</div>
-			<div id="sign col-md-3 col-md-offset-7">
-				<img id="signPic" src="http://static1.squarespace.com/static/564d14dfe4b0290681184a82/570d5f6a1bbee0c64b3930e4/570d668960b5e9c23c5a3a99/1460561661297/Death+Valley+National+Park+new+-+001.jpg">
-			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2" id="chart"></div>
+			<div class="col-md-6 col-md-offset-3 chart" id="chart"></div>
+		</div>
+		<div id="modal" class="modal">
+
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <img class="loadPic" src="http://static1.squarespace.com/static/564d14dfe4b0290681184a82/570d5f6a1bbee0c64b3930e4/570d668960b5e9c23c5a3a99/1460561661297/Death+Valley+National+Park+new+-+001.jpg">
+		    <h1 class="loader" id="loader">Loading...<h1>
+		  </div>
+
 		</div>
 	</section>
+	<footer>
+		<h4>Brought to you by <a href="https://developer.mapquest.com/documentation/">MAPQUEST.com's API</a>.</h4>
+	</footer>
 </body>
 </html>
