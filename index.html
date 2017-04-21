@@ -12,44 +12,47 @@
     <script src="js/app.js"></script>
 </head>
 <body>
-	<div>
-		<header>
-			<h1>Map My Elevation</h1>
-		</header>
-	</div>
-	<section class="routeInput container">
-		<div id="formDiv row">	
-			<div class="col-md-6 col-md-offset-3">
-				<form>
-					<input name="start" type="text" placeholder="Starting Location">
-					<br><br>
-					<input name="finish" type="text" placeholder="Destination">
-					<br><br>
-					<input name="button" type="submit">
-					<br><br>
-					<p>Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas!  <b>Please limit route to 250 miles!!!!</b></p>
-					<p id="loadingMessage"></p>
-				</form>
-				<p id="distance"></p>
-				<p id="startElev"></p>
-				<p id="endElev"></p>
+	<div class="wrapper">
+		<div>
+			<header>
+				<img class="elevationPic" src="./design_img/elevation.svg">
+				<h1>Map My Elevation</h1>
+			</header>
+		</div>
+		<div class="routeInput container">
+			<div id="formDiv row">	
+				<div class="col-md-6 col-md-offset-3">
+					<form>
+						<input name="start" type="text" placeholder="Starting Location">
+						<br><br>
+						<input name="finish" type="text" placeholder="Destination">
+						<br><br>
+						<input name="button" type="submit">
+						<br><br>
+						<p>Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas!  <b>Please limit route to 250 miles!!!!</b></p>
+						<p id="loadingMessage"></p>
+					</form>
+					<p id="distance"></p>
+					<p id="startElev"></p>
+					<p id="endElev"></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 chart" id="chart"></div>
+			</div>
+			<div id="modal" class="modal">
+
+			  <!-- Modal content -->
+			  <div class="modal-content">
+			    <img class="loadPic" src="http://static1.squarespace.com/static/564d14dfe4b0290681184a82/570d5f6a1bbee0c64b3930e4/570d668960b5e9c23c5a3a99/1460561661297/Death+Valley+National+Park+new+-+001.jpg">
+			    <h1 class="loader" id="loader">Loading...<h1>
+			  </div>
+
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3 chart" id="chart"></div>
-		</div>
-		<div id="modal" class="modal">
-
-		  <!-- Modal content -->
-		  <div class="modal-content">
-		    <img class="loadPic" src="http://static1.squarespace.com/static/564d14dfe4b0290681184a82/570d5f6a1bbee0c64b3930e4/570d668960b5e9c23c5a3a99/1460561661297/Death+Valley+National+Park+new+-+001.jpg">
-		    <h1 class="loader" id="loader">Loading...<h1>
-		  </div>
-
-		</div>
-	</section>
-	<footer>
-		<h4>Brought to you by <a href="https://developer.mapquest.com/documentation/">MAPQUEST.com's API</a>.</h4>
-	</footer>
+		<footer>
+			<h4>Brought to you by <a href="https://developer.mapquest.com/documentation/">MAPQUEST.com's API</a>.</h4>
+		</footer>
+	</div>
 </body>
 </html>

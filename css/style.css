@@ -13,8 +13,24 @@ header {
 	padding-bottom: 50px;
 }
 
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: red;
+}
+
 form {
 	padding-bottom: 25px;
+}
+
+.elevationPic {
+	color: #222;
+}
+
+.wrapper {
+	min-height: 100%;
+	position: relative;
 }
 
 .chart {
@@ -77,5 +93,13 @@ footer {
 	background-color: #222;
 	text-align: center;
 	color: #fff;
-	height: 50px;
+	height: 60px;
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	left: 0px;
+}
+
+footer h4{
+	padding-top: 10px;
 }
