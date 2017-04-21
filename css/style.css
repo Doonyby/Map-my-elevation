@@ -1,3 +1,6 @@
+/*font-family: 'Permanent Marker', cursive;
+font-family: 'Oswald', sans-serif;*/
+
 html {
 	box-sizing: border-box;
 	-web-font-smoothing: antialiased;
@@ -11,6 +14,14 @@ header {
 	text-align: center;
 	padding-top: 50px;
 	padding-bottom: 50px;
+	font-family: 'Permanent Marker', cursive;
+	color: #222;
+	padding-bottom: 20px;
+}
+
+header h1 {
+	font-size: 60px;
+	margin-top: 10px;
 }
 
 html, body {
@@ -18,6 +29,10 @@ html, body {
 	margin: 0;
 	padding: 0;
 	background-color: red;
+	font-family: 'Oswald', sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+	color: #222;
 }
 
 form {
@@ -25,7 +40,17 @@ form {
 }
 
 .elevationPic {
+	height: 22vh;
+	width: 33vw;
+	background-image: url(../design_img/elevation.svg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 	color: #222;
+	margin: 0 auto;
+}
+
+.instruct {
+	float: right;
 }
 
 .wrapper {
@@ -102,4 +127,23 @@ footer {
 
 footer h4{
 	padding-top: 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+	header h1 {
+		font-size: 50px;
+	}
+
+}
+
+@media only screen and (max-width: 768px) {
+	header h1 {
+		font-size: 30px;
+	}
+
+	.elevationPic {
+		height: 122px;
+		width: 230px;
+	}
+
 }

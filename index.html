@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker" rel="stylesheet">
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="./js/velocity.min.js"></script>
     <script src="js/app.js"></script>
@@ -15,7 +16,7 @@
 	<div class="wrapper">
 		<div>
 			<header>
-				<img class="elevationPic" src="./design_img/elevation.svg">
+				<div class="elevationPic"></div>
 				<h1>Map My Elevation</h1>
 			</header>
 		</div>
@@ -29,7 +30,7 @@
 						<br><br>
 						<input name="button" type="submit">
 						<br><br>
-						<p>Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas!  <b>Please limit route to 250 miles!!!!</b></p>
+						<p class="instruct">Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas!  <b>Please limit route to 250 miles!!!!</b></p>
 						<p id="loadingMessage"></p>
 					</form>
 					<p id="distance"></p>
@@ -51,7 +52,7 @@
 			</div>
 		</div>
 		<footer>
-			<h4>Brought to you by <a href="https://developer.mapquest.com/documentation/">MAPQUEST.com's API</a>.</h4>
+			<h4>Brought to you by <a target="_blank" href="https://developer.mapquest.com/documentation/">MAPQUEST.com's API</a>.</h4>
 		</footer>
 	</div>
 </body>
