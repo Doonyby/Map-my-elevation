@@ -30,7 +30,7 @@ $(document).ready(function () {
     	$('#modal').css('display', 'none');
     	$('#loadingMessage').text("Don't see any info?  Try submitting again, or try using different " +
     		"locations close to the originals, so you can still get an accurate route.");
-    	$("#chart").velocity("scroll", 800);
+    	$('#loadingMessage').velocity('scroll', 800);
     }
 
 	var getGeocodeInfo = function(start, finish) {

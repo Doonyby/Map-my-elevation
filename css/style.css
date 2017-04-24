@@ -28,7 +28,7 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: red;
+	background-color: #E8BE89;
 	font-family: 'Oswald', sans-serif;
 	font-size: 18px;
 	line-height: 1.5;
@@ -37,6 +37,59 @@ html, body {
 
 form {
 	padding-bottom: 25px;
+}
+
+a {
+	color: #E8BE89;
+}
+
+a:active,
+a:focus,
+a:hover {
+	color: #E8BE89;
+	text-decoration: none;
+	opacity: 0.7;
+}
+
+a:active,
+a:focus,
+a:after {
+	opacity: 1;
+}
+
+.button {
+	padding: 5px 30px 5px 30px;
+	background-color: #222;
+	color: #fff;
+	border: none;
+}
+
+.button:active,
+.button:focus,
+.button:hover {
+	outline: none;
+	opacity: 0.9;
+	text-decoration: none;
+}
+
+.button:active,
+.button:focus {
+	opacity: 1;
+}
+
+.button:after {
+	opacity: 1;
+	text-decoration: none;
+	outline: none;
+}
+
+.loadingMessage {
+	color: red;
+}
+
+.input {
+	width: 300px;
+	background-color: #fff;
 }
 
 .elevationPic {
