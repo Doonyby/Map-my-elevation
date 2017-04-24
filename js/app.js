@@ -78,8 +78,6 @@ $(document).ready(function () {
 		$.getJSON(url, params, function(data) {
 			$('#startElev').text('Starting Elevation: ' + data.elevationProfile[0].height + ' ft. above sea level.');
 			$('#endElev').text('Ending Elevation: ' + data.elevationProfile.pop().height + ' ft. above sea level.');
-			$('#loader').stop(true);
-			$('#modal').css('display', 'none');
 		});
 	}
 
