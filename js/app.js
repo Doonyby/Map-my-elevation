@@ -1,3 +1,5 @@
+google.load('visualization', '1', {packages: ['columnchart']});
+
 $(document).ready(function () {
 	$('input[name="button"]').click(function(e) {
 		e.preventDefault();		
@@ -8,36 +10,88 @@ $(document).ready(function () {
 		var start = $('input[name="start"]').val()
 		var finish = $('input[name="finish"]').val()
 		if (start == '') {
-			alert('You must enter a starting value');
+			$('#errorMessage').text('You must enter a starting value');
 		}
 		else if (finish == '') {
-			alert('You must enter a finish value');
+			$('#errorMessage').text('You must enter a finish value');
 		} else {
-			// $('#modal').css('display', 'block');
-			// startAnimation();
-			getGeocodeInfo(start, finish);
+			$('#errorMessage').text('');
+			$('#modal').css('display', 'block');
+			startAnimation();
+			getPoints(start, finish);
 		}
 	});
 
-	var getGeocodeInfo = function(start, finish) {
-		console.log(typeof start);
-		var code = new google.maps.Geocoder;
-		console.log(code.geocode({address: start}));
+
+	function getPoints(start, finish) {
+	  	var directionsService = new google.maps.DirectionsService;
+	    directionsService.route({
+	        origin: start,
+	        destination: finish,
+	        travelMode: 'DRIVING'
+	    }, function(response, status) {
+	        if (status === 'OK') {
+	      	  path = response.routes[0].overview_path;
+			  var points = $.map(path, function(a){return [{lat: a.lat(), lng: a.lng()}]});
+			  console.log('points', points);
+			  getElevChart(points);
+	        } else {
+	          console.log('routestatus', status);
+	          console.log('routeresponse', response);
+	        }
+	    });
 	}
 
- //    function startAnimation() {
- //      $('#loader').animate({letterSpacing: "+10px"}, 1000);
- //      $('#loader').animate({letterSpacing: "0px"}, 1000, startAnimation);
- //      setTimeout(stopAnimation, 5000);
- //    } 
+	function getElevChart(points) {
+		var elevator = new google.maps.ElevationService;
+		var path = points;
+		elevator.getElevationAlongPath({
+            'path': path,
+            'samples': path.length
+        }, function(elevations, status) {
+        	var chartDiv = document.getElementById('chart');
+	        if (status !== 'OK') {
+	          // Show the error code inside the chartDiv.
+	          chartDiv.html('<p>Cannot show elevation: request failed because ' + status + '</p>');
+	          return;
+	        }
+	        // Create a new chart in the elevation_chart DIV.
+	        var chart = new google.visualization.ColumnChart(chartDiv);
 
- //    function stopAnimation() {
- //    	$('#loader').stop(true);
- //    	$('#modal').css('display', 'none');
- //    	$('#loadingMessage').text("Don't see any info?  Try submitting again, or try using different " +
- //    		"locations close to the originals, so you can still get an accurate route.");
- //    	$('#loadingMessage').velocity('scroll', 800);
- //    }
+	        // Extract the data from which to populate the chart.
+	        // Because the samples are equidistant, the 'Sample'
+	        // column here does double duty as distance along the
+	        // X axis.
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Sample');
+	        data.addColumn('number', 'Elevation');
+	        for (var i = 0; i < elevations.length; i++) {
+	          data.addRow(['', elevations[i].elevation]);
+	        }
+
+	        // Draw the chart using the data within its DIV.
+	        chart.draw(data, {
+	          height: 300,
+	          legend: 'none',
+	          titleY: 'Elevation (m)'
+	        });
+	    });
+	}
+
+	
+    function startAnimation() {
+      $('#loader').animate({letterSpacing: "+10px"}, 1000);
+      $('#loader').animate({letterSpacing: "0px"}, 1000, startAnimation);
+      setTimeout(stopAnimation, 2000);
+    } 
+
+    function stopAnimation() {
+    	$('#loader').stop(true);
+    	$('#modal').css('display', 'none');
+    	$('#loadingMessage').text("Don't see any info?  Try submitting again, or try using different " +
+    		"locations close to the originals, so you can still get an accurate route.");
+    	$('#loadingMessage').velocity('scroll', 500);
+    }
 
 	// var getGeocodeInfo = function(start, finish) {
 	// 	var params = {

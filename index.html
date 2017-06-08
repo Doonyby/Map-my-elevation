@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Map My Elevation</title>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker" rel="stylesheet">
+    <script src="https://www.google.com/jsapi"></script>
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="./js/velocity.min.js"></script>
     <script src="js/app.js"></script>
@@ -24,6 +25,7 @@
 		<div class="routeInput container">
 			<div id="formDiv row">	
 				<div class="col-md-6 col-md-offset-3">
+					<p class="loadingMessage" id="errorMessage"></p>
 					<form>
 						<input class="input" name="start" type="text" placeholder="Starting Location">
 						<br><br>
@@ -31,7 +33,7 @@
 						<br><br>
 						<input class="button" name="button" type="submit">
 						<br><br>
-						<p class="instruct">Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas!  <b>Please limit route to 250 miles!!!!</b></p>
+						<p class="instruct">Enter the starting location and destination of your route. (Address(optional), City, State) Don't forget the commas!</p>
 						<p class="loadingMessage" id="loadingMessage"></p>
 					</form>
 					<p id="distance"></p>
@@ -53,7 +55,7 @@
 			</div>
 		</div>
 		<footer>
-			<h4>Brought to you by <a target="_blank" href="https://developer.mapquest.com/documentation/">MAPQUEST.com's API</a>.</h4>
+			<h4>Brought to you by <a target="_blank" href="https://developers.google.com/maps">Google Maps APIs</a>.</h4>
 		</footer>
 	</div>
 </body>
