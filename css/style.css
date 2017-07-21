@@ -37,6 +37,7 @@ html, body {
 
 form {
 	padding-bottom: 25px;
+	text-align: center;
 }
 
 a {
@@ -62,6 +63,7 @@ a:after {
 	background-color: #222;
 	color: #fff;
 	border: none;
+	border-radius: 5px;
 }
 
 .button:active,
@@ -88,8 +90,9 @@ a:after {
 }
 
 .input {
-	width: 300px;
+	width: 100%;
 	background-color: #fff;
+	border-radius: 5px;
 }
 
 .elevationPic {
@@ -103,7 +106,7 @@ a:after {
 }
 
 .instruct {
-	float: right;
+	text-align: left;
 }
 
 .wrapper {
