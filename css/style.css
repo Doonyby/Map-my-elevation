@@ -59,6 +59,7 @@ a:after {
 }
 
 .button {
+	height: 40px;
 	padding: 5px 30px 5px 30px;
 	background-color: #222;
 	color: #fff;
@@ -90,6 +91,7 @@ a:after {
 }
 
 .input {
+	height: 40px;
 	width: 100%;
 	background-color: #fff;
 	border-radius: 5px;
