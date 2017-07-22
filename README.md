@@ -1,10 +1,10 @@
 Map My Elevation
 ==========
-This is an app designed to chart your elevation by making api calls to https://www.mapquest.com.
+This is an app designed to chart your elevation by making api calls to https://developers.google.com/maps.
 
 Summary
 -------
-Users may type in a starting and finishing location within 250 miles of each other, and then recieve an elevation chart of the shortest route between those two points.   
+Users may type in a starting and finishing location, and then recieve an elevation chart of the shortest route between those two points.   
 
 Live Site
 ---------
@@ -27,7 +27,7 @@ Technology
 - CSS3
 - [Bootstrap](https://getbootstrap.com/)
 - [JQuery](https://jquery.com/)
-- [MapQuest API](https://developer.mapquest.com/documentation/)
+- [Google Maps API](https://developers.google.com/maps)
 
 
 
